@@ -9,6 +9,8 @@ import javax.swing.JTextArea;
 import controller.RowGameController;
 import model.RowGameModel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class RowGameStatusView implements RowGameView
 {
@@ -16,24 +18,39 @@ public class RowGameStatusView implements RowGameView
     public JPanel messages = new JPanel(new FlowLayout());
 
     
-    public RowGameStatusView(RowGameController gameController) {
-	super();
+    public RowGameStatusView(RowGameController gameController) 
+    {
+		super();
 
-	messages.setBackground(Color.white);
-	messages.add(playerturn);
+		gameController.gameModel.addPropertyChangeListener(new PropertyChangeListener() 
+		{
+        	@Override
+        	public void propertyChange(PropertyChangeEvent evt) 
+        	{
+            	update(gameController.gameModel);
+        	}
+    	});
+
+		messages.setBackground(Color.white);
+		messages.add(playerturn);
     }
 
-    public void update(RowGameModel gameModel) {
-	if (gameModel.getFinalResult() == null) {
-	    if (gameModel.player.equals("1")) {
-		playerturn.setText("Player 1 to play 'X'");
-	    }
-	    else {
-		playerturn.setText("Player 2 to play 'O'");
-	    }
-	}
-	else {
-	    playerturn.setText(gameModel.getFinalResult());
-	}	
+    public void update(RowGameModel gameModel) 
+    {
+		if (gameModel.getFinalResult() == null) 
+		{
+	    	if (gameModel.player.equals("1")) 
+	    	{
+				playerturn.setText("Player 1 to play 'X'");
+	    	}
+	    	else 
+	    	{
+				playerturn.setText("Player 2 to play 'O'");
+	    	}
+		}
+		else 
+		{
+	    	playerturn.setText(gameModel.getFinalResult());
+		}	
     }
 }
