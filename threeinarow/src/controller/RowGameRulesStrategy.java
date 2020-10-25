@@ -5,11 +5,10 @@ import model.RowGameModel;
 
 public interface RowGameRulesStrategy
 {
-    public void reset(RowGameModel gameModel);
+	//Resets the game to play again.
+    public void resetGame(RowGameModel gameModel, int rows, int cols);
 
-    public void move(RowGameModel gameModel, int row, int col);
+    //Sets the values isLegalMove of based on the current move indices.
+    public void legalMoves(RowGameModel gameModel, int rowIndex, int colIndex);
 
-    public boolean isWin(RowGameModel gameModel);
-
-    public boolean isTie(RowGameModel gameModel);
 }
