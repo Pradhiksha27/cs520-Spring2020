@@ -38,11 +38,11 @@ public class RowGameController {
 
 		if(gameRule == 1)
 		{
-			gameStrategy = new TIRrules();
+			gameStrategy = new RGCThreeInARowRules();
 		}
 		else
 		{
-			gameStrategy = new TicTacToe();
+			gameStrategy = new RGCTicTacToeRules();
 		}
 	
 		gameStrategy.resetGame(gameModel, rows, cols);
@@ -50,14 +50,6 @@ public class RowGameController {
 
     public RowGameModel getModel() {
 		return this.gameModel;
-    }
-
-    public RowGameGUI getView() {
-		return this.gameView;
-    }
-
-    public void startUp() {
-		gameView.gui.setVisible(true);
     }
 
     /**
@@ -112,7 +104,6 @@ public class RowGameController {
 				gameModel.setFinalResult(GAME_END_NOWINNER);
 			}
 		}
-		gameView.update(gameModel);
     }
 
     /**
@@ -132,7 +123,7 @@ public class RowGameController {
     	if(rowIndex < numRows && rowIndex >=0 && colIndex < numCols && colIndex >= 0){
     		return gameModel.blocksData[rowIndex][colIndex].getContents();
     	}
-    	return "Invalid indices!"
+    	return "Invalid indices!";
     }
 
     //Return the 1,2,0 corresponding to whichever player has won the game
@@ -155,7 +146,7 @@ public class RowGameController {
 		//Checking vertically
 		for (int j = 0; j < numRows - 2; j++) 
 		{
-			String stringCheck = (gameModel.blocksData[i][colIndex].getContents() + gameModel.blocksData[i + 1][colIndex].getContents() + gameModel.blocksData[i + 2][colIndex].getContents());
+			String stringCheck = (gameModel.blocksData[j][colIndex].getContents() + gameModel.blocksData[j + 1][colIndex].getContents() + gameModel.blocksData[j + 2][colIndex].getContents());
 			
 			if (stringCheck.equals("XXX")) 
 			{
@@ -176,7 +167,7 @@ public class RowGameController {
 		String d1d3 = getContentIfValid(rowIndex, colIndex) + getContentIfValid(rowIndex + 1, colIndex + 1) + getContentIfValid(rowIndex - 1, colIndex - 1);
 		String d2d4 = getContentIfValid(rowIndex, colIndex) + getContentIfValid(rowIndex + 1, colIndex - 1) + getContentIfValid(rowIndex - 1, colIndex + 1);
 
-		if (d1.equals("XXX") || d2.equals("XXX") || d3.equals("XXX") || q4Diagonal.equals("XXX") || d1d3.equals("XXX") || d2d4.equals("XXX")) 
+		if (d1.equals("XXX") || d2.equals("XXX") || d3.equals("XXX") || d4.equals("XXX") || d1d3.equals("XXX") || d2d4.equals("XXX")) 
 		{
 			return 1;
 		} 

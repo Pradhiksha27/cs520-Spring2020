@@ -41,7 +41,7 @@ public class RowGameModel
     public void setFinalResult(String finalResult) {
         String oldResult = this.finalResult;
 	    this.finalResult = finalResult;
-        this.change.firePropertyChange("finalResult", oldResult, this.finalResult)
+        this.change.firePropertyChange("finalResult", oldResult, this.finalResult);
     }
 
     //Assigns this.player to the "player" parameter and fires an event.
