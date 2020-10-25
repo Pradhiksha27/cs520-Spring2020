@@ -1,0 +1,15 @@
+CS-520 Assignment 2
+
+Name: Pradhiksha Ashok Kumar
+
+(a) Best practices violation:
+
+1. Open-closed principle violation: The proposed fix for the implementation of encapsulation is implemented in my code.
+
+2. Extensibility Violation: The previous code provided was hardcoded to a 3*3 grid. The fix to this violation has been implemented in my code that takes in custom inputs for rows and columns.
+
+3. Testability Violation: The initial code provided didn’t facilitate unit testing. The fix to this violation has been implemented both by MVC refactoring and my code. MVC helped to a great extent by separating the model, view, and controller components for a better understanding. The test cases I’ve written for each of these separate components now facilitate isolated testing for better testability and readability.
+
+(b) For the RowGameController, I’ve applied strategy design pattern.
+
+(c) The observable in the model package is RowGameModel.
